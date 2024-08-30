@@ -23,7 +23,16 @@ print(f"find('World'): {text.find('World')}")  # Output: 8
 
 # 8. .format(*args, **kwargs) - Formats the string using the provided arguments
 formatted_string = "The value is: {} {} {}".format(42, 12, 53)
-print(f"format(): '{formatted_string}'")  # Output: 'The value is: 42, 12, 53'
+print(f"format(): '{formatted_string}'")  # Output: 'The value is: 42 12 53'
+formatted_string = "The value is: {2} {1} {0}".format(42, 12, 53)
+print(f"format(): '{formatted_string}'")  # Output: 'The value is: 53 12 42'
+formatted_string = "The value is: {c} {b} {a}".format(a="Timon", b="and", c="Pumba")
+print(f"format(): '{formatted_string}'")  # Output: 'The value is: Pumba and Timon'
+name = Marcin
+formatted_string = f"The value is: {name}"
+print(formatted_string)  # Output: 'The value is: Marcin'
+
+
 
 # 9. .isalpha() - Checks if all characters in the string are alphabetic
 print(f"isalpha(): {text.isalpha()}")  # Output: False (because of spaces and punctuation)
