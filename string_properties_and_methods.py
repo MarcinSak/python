@@ -22,8 +22,8 @@ print(f"endswith('World!'): {text.endswith('World!')}")  # Output: True
 print(f"find('World'): {text.find('World')}")  # Output: 8
 
 # 8. .format(*args, **kwargs) - Formats the string using the provided arguments
-formatted_string = "The value is: {}".format(42)
-print(f"format(): '{formatted_string}'")  # Output: 'The value is: 42'
+formatted_string = "The value is: {} {} {}".format(42, 12, 53)
+print(f"format(): '{formatted_string}'")  # Output: 'The value is: 42, 12, 53'
 
 # 9. .isalpha() - Checks if all characters in the string are alphabetic
 print(f"isalpha(): {text.isalpha()}")  # Output: False (because of spaces and punctuation)
