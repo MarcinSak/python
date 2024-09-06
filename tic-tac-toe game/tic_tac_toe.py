@@ -69,7 +69,6 @@ def check_win(last_move, board):
 
 players = create_players()
 player = players[list(players.keys())[0]]
-WIN = False
 board = ['_'] * 9
 
 display_board(board)
@@ -80,8 +79,7 @@ for i in range(9):
     next_move = int(next_move)
     board[next_move] = player['sign']
     display_board(board)
-    WIN = check_win(next_move, board)
-    if WIN:
+    if check_win(next_move, board):
         print(f"{player['name']} has won. Congratulations!")
         break
     else:
