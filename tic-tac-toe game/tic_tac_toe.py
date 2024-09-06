@@ -54,16 +54,15 @@ def ask_for_next_move(available_fields, player, sign):
     return int(next_move)
 
 
-def check_win(move, board):
-    move = int(move)
+def check_win(last_move, board):
     winning_combinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
         [0, 4, 8], [2, 4, 6]
     ]
-    for l in winning_combinations:
-        if move in l:
-            if board[l[0]] == board[l[1]] == board[l[2]]:
+    for combination in winning_combinations:
+        if last_move in combination:
+            if board[combination[0]] == board[combination[1]] == board[combination[2]]:
                 return True
     return False
 
