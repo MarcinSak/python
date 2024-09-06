@@ -1,7 +1,7 @@
 players = {}
 BOARD = ['_'] * 9
 PLAYER = None
-WINNER = None
+
 
 def display_board(board):
     spacing = "-"*11
@@ -22,8 +22,7 @@ def get_player_sign():
     char = None
     accepted_chars = ['X', 'O']
     while char not in accepted_chars:
-        char = input(
-            "Which sign do you prefer? Please choose X or O: ").upper()
+        char = input("Which sign do you prefer? Please choose X or O: ").upper()
         if char not in accepted_chars:
             print(f"Wrong, you have provided {char}, expected was X or O.")
     return char
@@ -45,7 +44,6 @@ def switch_player(current_player):
     return players['player2'] if current_player == players['player1'] else players['player1']
 
 
-
 def get_available_fields(board):
     return [str(i) for i, e in enumerate(board) if e == "_"]
 
@@ -53,23 +51,34 @@ def get_available_fields(board):
 def ask_player_for_the_next_move(availible_fields, player, sign):
     next_move = None
     while next_move not in availible_fields:
-        next_move = input(f"{player}, where would you place {sign} next from (0-8): ")
+        next_move = input(f"{player}, where would you place {
+                          sign} next from (0-8): ")
 
         if next_move not in availible_fields:
-            print(f"Wrong, you have provided {next_move}, but availible are: {availible_fields}.")
-    return next_move
+            print(f"Wrong, you have provided {
+                  next_move}, but availible are: {availible_fields}.")
+    return int(next_move)
 
 
-def input_next_move(next_move, sign, board):
-    pass
-
-
-def check_win():
-    pass
-
-
-def present_result():
-    pass
+def check_win(move, board):
+    move = int(move)
+    lista = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
+    for l in lista:
+        if move in l:
+            print(l)
+            if board[l[0]] == board[l[1]] == board[l[2]]:
+                print(f"{board[l[0]]} WINS")
+                return True
+    return False
 
 
 # tests
@@ -79,28 +88,23 @@ example1_board = ['O', 'X', '_', 'O', 'X', '_', 'O', '_', '_']
 example2_board = ['O', 'X', 'X', 'O', 'X', '_', 'O', '_', '_']
 example3_board = ['O', '_', '_', 'X', '_', '_', 'O', '_', '_']
 
-BOARD = example3_board
+BOARD = example0_board
 create_players()
-display_board(BOARD)
 
-
-
-check_win()
-
-
-print(players)
-# display_board(example0_board)
-
-PLAYER =  players['player1']
+PLAYER = players['player1']
 WIN = False
-while not WIN:
-    print("current player is:")
-    print(PLAYER)
+for i in range(0, 9):
+    print(f"current player is {PLAYER['name']}")
     display_board(BOARD)
     available_fields = get_available_fields(BOARD)
-    next_move = ask_player_for_the_next_move(available_fields, PLAYER['name'], PLAYER['sign'])
-    BOARD[int(next_move)] = PLAYER['sign']
-    WIN = check_win(BOARD)
-    PLAYER = switch_player(PLAYER)
-
-present_result()
+    next_move = int(ask_player_for_the_next_move(available_fields, PLAYER['name'], PLAYER['sign']))
+    BOARD[next_move] = PLAYER['sign']
+    WIN = check_win(next_move, BOARD)
+    print("WIN?:", WIN)
+    if WIN:
+        print(f'{PLAYER['name']} has win. Congratulations!')
+        break
+    else:
+        PLAYER = switch_player(PLAYER)
+else:
+    print("Draw")
