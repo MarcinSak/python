@@ -1,4 +1,7 @@
+import os
+
 def display_board(board):
+    os.system('cls' if os.name == 'nt' else 'clear')
     spacing = "-"*11
     print(f"+{spacing}+")
     print(f"| {board[0]} | {board[1]} | {board[2]} |")
