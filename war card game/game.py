@@ -1,10 +1,12 @@
-import card
+import card, deck, data
+
 class Game():
     '''ask for move, check if win'''
     def __init__(self) -> None:
         pass
 
 if __name__ == "__main__":
-    two_of_hearts = card.Card("Two", "Hearts")
-    five_of_spades = card.Card(rank="Five", suit="Spades")
-    print(two_of_hearts.value < five_of_spades.value)
+   new_deck = deck.Deck()
+   print(new_deck.all_cards[3])
+   new_deck.shuffle_deck()
+   print(new_deck.all_cards[3])

@@ -1,19 +1,18 @@
 '''Deck operations'''
-import card
+from random import shuffle
+import data, card
+
 class Deck():
-    def __init__(self, first_card: card.Card, second_card: card.Card) -> None:
-        self.first_card = first_card
-        self.second_card = second_card
-    def __str__(self) -> str:
-        return [self.first_card, self.second_card]
-    def compare_cards(self):
-        if self.first_card > self.second_card:
-            print("First card is higher")
-            return 1
-        elif(self.first_card < self.second_card):
-            print("Second card is higher")
-            return 2
-        else:
-            print("Cards are the same")
-            return 0
-    
+    def __init__(self):
+        print("New deck created")
+        self.all_cards = []
+        for rank in data.ranks:
+            for suit in data.suits:
+                card_created = card.Card(rank=rank, suit=suit)
+                self.all_cards.append(card_created)
+
+    def shuffle_deck(self) -> None:
+        shuffle(self.all_cards)
+
+    def deal_one(self) -> card.Card:
+        return self.all_cards.pop()
