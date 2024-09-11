@@ -1,12 +1,10 @@
-import card, deck, data
-
-class Game():
-    '''ask for move, check if win'''
-    def __init__(self) -> None:
-        pass
+import card, deck, data, player
 
 if __name__ == "__main__":
+   # game set-up
+   player_one = player.Player("One")
+   player_two = player.Player("Two")
    new_deck = deck.Deck()
-   print(new_deck.all_cards[3])
    new_deck.shuffle_deck()
-   print(new_deck.all_cards[3])
+   
+   # start game
