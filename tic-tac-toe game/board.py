@@ -1,6 +1,7 @@
 import os
 
 def display_board(board):
+    """Clears the screen and displays the current state of the game board."""
     os.system('cls' if os.name == 'nt' else 'clear')
     spacing = "-"*11
     print(f"+{spacing}+")
@@ -13,10 +14,12 @@ def display_board(board):
 
 
 def get_available_fields(board):
+    """Returns a list of available fields on the board where players can make a move."""
     return [str(i) for i, e in enumerate(board) if e == "_"]
 
 
 def ask_for_next_move(available_fields, player, sign):
+    """Prompts the current player to choose a valid move from the available fields."""
     next_move = None
     while next_move not in available_fields:
         next_move = input(f"{player}, where would you place {sign} next from (0-8): ")
@@ -27,6 +30,7 @@ def ask_for_next_move(available_fields, player, sign):
 
 
 def check_win(last_move, board):
+    """Checks if the last move resulted in a win by comparing it to possible winning combinations."""
     winning_combinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],

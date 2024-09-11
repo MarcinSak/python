@@ -1,7 +1,9 @@
+"""Module for handling the game board and game flow in a Tic-Tac-Toe game."""
 from players import create_players, switch_player
 from board import display_board, get_available_fields, ask_for_next_move, check_win
 
 def play():
+    """Runs the main game loop."""
     players = create_players()
     player = players[list(players.keys())[0]]
     board = ['_'] * 9
@@ -9,7 +11,8 @@ def play():
 
     for i in range(9):
         available_fields = get_available_fields(board)
-        next_move = ask_for_next_move(available_fields, player['name'], player['sign'])
+        next_move = \
+            ask_for_next_move(available_fields, player['name'], player['sign'])
         next_move = int(next_move)
         board[next_move] = player['sign']
         display_board(board)
