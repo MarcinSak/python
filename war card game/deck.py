@@ -10,6 +10,7 @@ class Deck():
             for suit in data.suits:
                 card_created = card.Card(rank=rank, suit=suit)
                 self.all_cards.append(card_created)
+        print(f"{len(self.all_cards)} cards created.")
 
     def shuffle_deck(self) -> None:
         shuffle(self.all_cards)
