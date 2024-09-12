@@ -28,6 +28,7 @@ class Game():
         while True:
             print(f"{self.player_one}  |  next card is {self.player_one.all_cards[0]}")
             print(f"{self.player_two}  |  next card is {self.player_two.all_cards[0]}")
+            if len(cards_on_table) > 0: print(f"{len(cards_on_table)} cards on the table")
             
             if self.player_one.all_cards[0].value > self.player_two.all_cards[0].value:
                 self.collect_cards(cards_on_table, self.player_one)
