@@ -1,3 +1,9 @@
+"""
+This module defines the Player class. Each player has a collection of cards, and methods 
+to add or remove cards from their deck. It also manages player-related actions like 
+drawing cards and updating the deck.
+"""
+
 import card
 from random import shuffle
 
