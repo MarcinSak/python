@@ -6,21 +6,25 @@ class InvalidTransactionError(Exception):
 
 class Account:
     def __init__(self, balance=0):
-        self.balance = balance
+        self._balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
 
     def deposit(self, amount):
         if amount <= 0:
             raise InvalidTransactionError("Deposit amount must be greater than zero.")
-        self.balance += amount
-        return self.balance
+        self._balance += amount
+        return self._balance
 
     def withdraw(self, amount):
         if amount <= 0:
             raise InvalidTransactionError("Withdrawal amount must be greater than zero.")
-        if amount > self.balance:
+        if amount > self._balance:
             raise InsufficientFundsError("Insufficient funds for this withdrawal.")
-        self.balance -= amount
-        return self.balance
+        self._balance -= amount
+        return self._balance
 
 class BankTransaction:
     def __init__(self, account: Account):
@@ -49,7 +53,7 @@ def perform_transaction():
 
     try:
         print(f"Balance after deposit: {transaction_processor.process_deposit(50)}")
-        print(f"Balance after withdrawal: {transaction_processor.process_withdrawal(100)}")
+        print(f"Balance after withdrawal: {transaction_processor.process_withdrawal(200)}")
     except InsufficientFundsError:
         print("Transaction failed due to insufficient funds.")
     except InvalidTransactionError:
